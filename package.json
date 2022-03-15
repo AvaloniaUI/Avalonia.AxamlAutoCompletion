@@ -4,6 +4,7 @@
   "description": "AutoCompletion extenions for AXAML files ",
   "version": "0.0.1",
   "publisher": "AvaloniaUI",
+  "repository": "https://github.com/aboimpinto/Avalonia.AxamlAutoCompletion",
   "engines": {
     "vscode": "^1.65.0"
   },
