@@ -1,3 +1,0 @@
-is_global = true
-build_property.RootNamespace = Avalonia.Ide.CompletionEngine
-build_property.ProjectDir = /home/esqueleto/myWork/avalonia-axamlautocompletion/Avalonia.AXAML.LanguageServer/Avalonia.Ide.CompletionEngine/
