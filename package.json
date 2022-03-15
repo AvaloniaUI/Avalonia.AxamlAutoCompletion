@@ -1,0 +1,107 @@
+{
+  "name": "avalonia-axamlautocompletion",
+  "displayName": "Avalonia.AxamlAutoCompletion",
+  "description": "AutoCompletion extenions for AXAML files ",
+  "version": "0.0.1",
+  "publisher": "AvaloniaUI",
+  "engines": {
+    "vscode": "^1.65.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Linters"
+  ],
+  "keywords": [
+    "xml",
+    "xaml",
+    "avalonia",
+    "wpf",
+    "xsd",
+    "completion",
+    "linter",
+    "lint",
+    "format"
+  ],
+  "activationEvents": [ 
+    "onLanguage:xml"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "xml",
+        "configuration": "./src/language-configuration.json"
+      }
+    ],
+    "configuration": {
+      "title": "AxamlComplete",
+      "type": "object",
+      "properties": {
+        "axamlComplete.formattingStyle": {
+          "description": "Defines if attributes should be single line or not.",
+          "type": "string",
+          "enum": [
+            "singleLineAttributes",
+            "multiLineAttributes",
+            "fileSizeOptimized"
+          ],
+          "scope": "resource",
+          "default": []
+        },
+        "axamlComplete.schemaMapping": {
+          "description": "Maps xmlns to xsd location Uri.",
+          "type": "array",
+          "scope": "resource",
+          "default": [
+            {
+              "xmlns": "http://www.w3.org/2001/XMLSchema",
+              "xsdUri": "https://www.w3.org/2001/XMLSchema.xsd"
+            },
+            {
+              "xmlns": "https://github.com/avaloniaui",
+              "xsdUri": "https://raw.githubusercontent.com/aboimpinto/Avalonia.VSCodeExtension/master/xsd/AvaloniaXamlSchema.xsd"
+            },
+            {
+              "xmlns": "http://www.w3.org/2000/svg",
+              "xsdUri": "https://raw.githubusercontent.com/dumistoklus/svg-xsd-schema/master/svg.xsd https://raw.githubusercontent.com/dumistoklus/svg-xsd-schema/master/xlink.xsd https://raw.githubusercontent.com/dumistoklus/svg-xsd-schema/master/namespace.xsd"
+            },
+            {
+              "xmlns": "http://schemas.microsoft.com/developer/msbuild/2003",
+              "xsdUri": "https://raw.githubusercontent.com/Microsoft/msbuild/master/src/MSBuild/MSBuild/Microsoft.Build.CommonTypes.xsd https://raw.githubusercontent.com/Microsoft/msbuild/master/src/MSBuild/MSBuild/Microsoft.Build.Core.xsd"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.1.4",
+    "@types/mocha": "^9.0.0",
+    "@types/node": "14.x",
+    "@types/vscode": "^1.65.0",
+    "@typescript-eslint/eslint-plugin": "^5.1.0",
+    "@typescript-eslint/parser": "^5.1.0",
+    "@vscode/test-electron": "^1.6.2",
+    "eslint": "^8.1.0",
+    "glob": "^7.1.7",
+    "mocha": "^9.1.3",
+    "ts-loader": "^9.2.5",
+    "typescript": "^4.4.4",
+    "webpack": "^5.52.1",
+    "webpack-cli": "^4.8.0"
+  },
+  "dependencies": {
+    "vscode-languageclient": "^7.0.0"
+  }
+}
