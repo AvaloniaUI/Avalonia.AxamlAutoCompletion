@@ -6,3 +6,6 @@ node_modules
 
 bin
 obj
+libs
+
+*.log

@@ -12,7 +12,6 @@ import {
 let client: LanguageClient;
 
 export function activate(context: vscode.ExtensionContext) {
-	
 
 	const extensionPath = vscode.extensions.getExtension("AvaloniaUI.avalonia-axamlautocompletion")?.extensionPath as string;
 	const libsFolder = path.join(extensionPath, "libs");

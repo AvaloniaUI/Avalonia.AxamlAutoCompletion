@@ -2,6 +2,7 @@
     "capabilities" : {
         "completionProvider" : {
             "resolveProvider": "true"
-        }
+        },
+        "documentFormattingProvider" : "true"
     }
 }
