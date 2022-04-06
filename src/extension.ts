@@ -28,7 +28,8 @@ export function activate(context: vscode.ExtensionContext) {
 			args: [dllPath],
 			transport: TransportKind.pipe,
 			runtime: ""
-		}
+		},
+		options: { detached: true }
 	};
 
 	let clientOptions: LanguageClientOptions = {
