@@ -24,23 +24,26 @@ namespace Avalonia.axamlLanguageServer
 
             Log.Logger.Information("Starting log...");
 
-            var server = await OmniSharp.Extensions.LanguageServer.Server.LanguageServer
-                .From(
-                    options => 
-                        options
-                            .WithInput(Console.OpenStandardInput())
-                            .WithOutput(Console.OpenStandardOutput())
-                            .ConfigureLogging(
-                                x => x
-                                    .AddSerilog(Log.Logger)
-                                    .AddLanguageProtocolLogging()
-                                    .SetMinimumLevel(LogLevel.Debug)
-                            )
-                            .WithServices(ConfigureServices)
-                            .WithHandler<TextDocumentHandler>()
-                            .WithHandler<FileChangeHandler>()
-                            .WithHandler<AvaloniaCodeCompletionHandler>())
-                .ConfigureAwait(false);
+            var server = await LanguageServer.From(
+                options => options
+                    .WithInput(Console.OpenStandardInput())
+                    .WithOutput(Console.OpenStandardOutput())
+                    .ConfigureLogging(
+                        x => x
+                            .AddSerilog(Log.Logger)
+                            .AddLanguageProtocolLogging()
+                            .SetMinimumLevel(LogLevel.Debug)
+                    )
+                    .WithServices(ConfigureServices)
+                    .WithHandler<TextDocumentHandler>()
+                    .WithHandler<FileChangeHandler>()
+                    .WithHandler<AvaloniaCodeCompletionHandler>()
+                ).ConfigureAwait(false);
+
+            server.Shutdown.Subscribe(x => {
+                Log.Logger.Information("--> Shutdown...");
+                Environment.Exit(0);
+            });
 
             await server
                 .WaitForExit
