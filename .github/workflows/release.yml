@@ -30,4 +30,9 @@ jobs:
         uses: lannonbr/vsce-action@3.0.0
         with: 
           args: "package"
-        # run: vsce package -o AvaloniaUI.CodeCompletion.vsix
+        
+      - name: Create artifact
+        uses: actions/update-artifact@v3
+        with: 
+          name: VSCode extension
+          path: /github/workspace/avalonia-axamlautocompletion-0.0.1.vsix
