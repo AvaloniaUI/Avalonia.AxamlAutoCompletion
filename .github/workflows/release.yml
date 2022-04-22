@@ -18,12 +18,12 @@ jobs:
 
       - name: Setup the NPM enviroment to compile the extension
         uses: actions/setup-node@v3
-          with: 
-            node-version: '16'
+        with: 
+          node-version: '16'
         run: npm install
 
       - name: Create the release version of the extension
         uses: lannonbr/vsce-action@3.0.0
-          with: 
-            args: "package"
+        with: 
+          args: "package"
         # run: vsce package -o AvaloniaUI.CodeCompletion.vsix
