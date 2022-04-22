@@ -9,14 +9,21 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout the code
+        uses: actions/checkout@v3
       
-      - uses: actions/setup-dotnet@v2
-      - run: dotnet build Avalonia.AXAML.LanguageServer/Avalonia.AXAML.LanguageServer 
+      - name: Configure and build the LanguageServer (dotnet)
+        uses: actions/setup-dotnet@v2
+        run: dotnet build Avalonia.AXAML.LanguageServer/Avalonia.AXAML.LanguageServer 
 
-      - uses: actions/setup-node@v3
-        with: 
-          node-version: '16'
-      - uses: lannonbr/vsce-action@3.0.0
-      - run: npm install
-      - run: vsce package -o AvaloniaUI.CodeCompletion.vsix
+      - name: Setup the NPM enviroment to compile the extension
+        uses: actions/setup-node@v3
+          with: 
+            node-version: '16'
+        run: npm install
+
+      - name: Create the release version of the extension
+        uses: lannonbr/vsce-action@3.0.0
+          with: 
+            args: "package"
+        # run: vsce package -o AvaloniaUI.CodeCompletion.vsix
