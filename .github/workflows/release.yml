@@ -15,5 +15,5 @@ jobs:
         with: 
           node-version: '16'
       - run: npm install
-      - run: dotnet build Avalonia.AXAML.LanguagerServer/Avalonia.AXAML.LanguagerServer
+      - run: dotnet build Avalonia.AXAML.LanguageServer/Avalonia.AXAML.LanguageServer 
       - run: vsce package -o AvaloniaUI.CodeCompletion.vsix
