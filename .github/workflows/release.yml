@@ -32,7 +32,7 @@ jobs:
           args: "package"
         
       - name: Create artifact
-        uses: actions/update-artifact@v3
+        uses: actions/upload-artifact@v3
         with: 
           name: VSCode extension
           path: /github/workspace/avalonia-axamlautocompletion-0.0.1.vsix
