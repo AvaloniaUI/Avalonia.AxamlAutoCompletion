@@ -38,9 +38,20 @@ jobs:
           path: ./avalonia-axamlautocompletion-0.0.1.vsix
 
       - name: Create GitHub release
+        id: create-new-release
         uses: actions/create-release@v1
         env: 
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with: 
           tag_name: ${{ github.run_number }}
           release_name: Release ${{ github.run_number }}
+
+      - name: Upload release assets
+        uses: actions/upload-release-assets@v1
+        env: 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with: 
+          upload_url: ${{ steps.create-new-release.outputs.upload_url }}
+          asset_path: ./avalonia-axamlautocompletion-0.0.1.vsix
+          asset_name: avalonia-axamlautocompletion-v${{ github.run_number }}.vsix
+          asset_content_type: application/zip
