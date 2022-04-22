@@ -16,7 +16,7 @@ jobs:
         uses: actions/setup-dotnet@v2
 
       - name: Compile the LanguageServer (dotnet)
-        run: dotnet build --configuration Release --output src/libs/ Avalonia.AXAML.LanguageServer/Avalonia.AXAML.LanguageServer 
+        run: dotnet build --configuration Release --output libs/ Avalonia.AXAML.LanguageServer/Avalonia.AXAML.LanguageServer 
 
       - name: Setup the NPM enviroment to compile the extension
         uses: actions/setup-node@v3
