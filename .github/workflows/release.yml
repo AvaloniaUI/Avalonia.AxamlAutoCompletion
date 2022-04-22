@@ -10,10 +10,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      
       - uses: actions/setup-dotnet@v2
+      - run: dotnet build Avalonia.AXAML.LanguageServer/Avalonia.AXAML.LanguageServer 
+
       - uses: actions/setup-node@v3
         with: 
           node-version: '16'
+      - uses: lannonbr/vsce-action@3.0.0
       - run: npm install
-      - run: dotnet build Avalonia.AXAML.LanguageServer/Avalonia.AXAML.LanguageServer 
       - run: vsce package -o AvaloniaUI.CodeCompletion.vsix
